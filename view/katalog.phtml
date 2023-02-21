@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Каталог товаров</title>
+    <link rel="stylesheet" href="/../view/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="logo">
+                <a href="/"><img src="/../view/images/logo.png" alt="То, что насыщает" width=150px></a>
+            </div>
+
+            <nav>
+                <ul class="top-menu">
+                    <li><a href="">Главная</a></li>
+                    <li class="active">Каталог</li>
+                    <li><a href="">Доставка</a></li>
+                    <li><a href="">О нас</a></li>
+                    <li><a href="">Сертификаты</a></li>
+                    <li><a href="">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <div class="contacts">+7 910 154 80 52<br>toChtoNasyshaet@mail.ru</div>
+        </header>
+
+
+        <div class="heading">
+            <h1>Каталог товаров</h1>
+        </div>
+        
+        <section class="productsCatalog">
+            <?php foreach ($productsList as $product): ?>
+                <div class="product">
+                    <a href="product.php?id=<?=$product->idGet()?>">
+                        <img src=<?=$product->urlGet()?> alt="изображение товара">
+                        <div class="name"><?=$product->nameGet()?></div>
+                        <?php
+                            $description = $product->contentGet();
+                            if (strlen($description) > 80) {
+                                $description = mb_substr($description, 0, 80)."...";
+                            }
+                        ?>
+                        <div class="description"><?=$description?></div>
+                        <div class="price"><?=$product->priceGet()?> ₽/литр</div>
+                        <div class="articul">Артикул: <?=$product->articulGet()?></div>
+                    </a>
+                </div>
+            <?php endforeach ?>
+
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer">
+            <div class="footer-contacts">+7 910 154 80 52<br>toChtoNasyshaet@mail.ru</div>
+            <div class="sitemap">
+                <div>
+                    <a href="">Главная</a>
+                    <a href="">Каталог</a>
+                </div>
+                <div>
+                    <a href="">Доставка</a>
+                    <a href="">О нас</a>
+                </div>
+                <div>
+                    <a href="">Сертификаты</a>
+                    <a href="">Контакты</a>
+                </div>
+             </div>
+            <div class="footer-logo">
+                <a href="/"><img src="/../view/images/footer-logo.png" alt="То, что насыщает" width=150px></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
